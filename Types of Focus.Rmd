@@ -1,0 +1,27 @@
+---
+title: "Types of Focus in Baseball"
+output: html_document
+date: '2022-07-07'
+---
+
+```{r}
+mydata <- read.csv("NumberandThrowType.csv")
+library(dplyr)
+library(ggplot2)
+df <- data.frame(Numberr = c(1,2,3,4),
+                 x = c(1,1,1,1))
+
+df %>%
+  ggplot(aes(x = "", y = x, fill = as.factor(Numberr))) +
+  geom_col() +
+  geom_text(aes(label = mydata$Throw.Type),
+            position = position_stack(vjust = 0.5)) +
+  scale_fill_manual(values=rainbow(15))+
+  labs(x = "", y = "",
+       caption = "Source = Riley Feltner")+
+  theme_minimal() +
+  ggtitle("Type of Focus and Throwing Type") +
+  annotate("text", y = c(.1,4), x = 0.47, label = c("External", "Internal"), size = 3.6) 
+  
+```
+
